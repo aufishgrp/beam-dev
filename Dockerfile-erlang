@@ -4,6 +4,6 @@ MAINTAINER Charles Zilm <ch@rleszilm.com>
 RUN yum install -y git
 RUN yum install -y gcc-c++
 
-COPY root /
+COPY volumes/erlang /
 
 ENTRYPOINT "/bin/bash"
