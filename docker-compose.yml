@@ -1,23 +1,10 @@
 version: '2'
 services:
-  erlang:
+  beam:
     build:
       context: .
-      dockerfile: Dockerfile-erlang
+      dockerfile: Dockerfile-beam
     volumes:
-      - ${SRC_DIR}/Git:/Git
+      - .:/src
     stdin_open: true
     tty: true
-  postgres:
-    image: "postgres:9.6.1"
-    volumes:
-      - ./volumes/postgresql/var/postgresql/data:/var/postgresql/data
-  nginx:
-    image: "nginx:1.11.8"
-    volumes:
-      - ./volumes/nginx/var/log/nginx:/var/log/nginx
-      - ./volumes/nginx/etc/nginx/conf.d:/etc/nginx/conf.d
-      - ./volumes/nginx/usr/share/nginx/html:/usr/share/nginx/html
-    ports:
-      - "80:80"
-      - "443:443"
