@@ -2,9 +2,9 @@ FROM centos:7
 MAINTAINER Charles Zilm <ch@rleszilm.com>
 
 ## Environment Variables
-ENV ERLANG_VERSION=19.3
-ENV ELIXIR_VERSION=1.4.4
-ENV RUST_VERSION=1.17.0
+ENV ERLANG_VERSION=20.0
+ENV ELIXIR_VERSION=1.4.5
+ENV RUST_VERSION=1.19.0
 
 ## Install base packages
 RUN yum install -y file
@@ -37,7 +37,6 @@ WORKDIR elixir
 RUN wget https://github.com/elixir-lang/elixir/releases/download/v$ELIXIR_VERSION/Precompiled.zip && \
     unzip Precompiled.zip
 RUN pwd
-RUN ls -al *
 RUN chmod a+x bin/* && \
     cp bin/* /usr/bin/ && \
     cp -r lib/* /usr/lib64/erlang/lib/ 

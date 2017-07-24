@@ -3,7 +3,7 @@ services:
   beam:
     build:
       context: .
-      dockerfile: Dockerfile-beam
+      dockerfile: Dockerfile
     volumes:
       - .:/src
     stdin_open: true
