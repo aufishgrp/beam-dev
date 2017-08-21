@@ -3,13 +3,14 @@ MAINTAINER Charles Zilm <ch@rleszilm.com>
 
 ## Environment Variables
 ENV ERLANG_VERSION=20.0
-ENV ELIXIR_VERSION=1.4.5
+ENV ELIXIR_VERSION=1.5.1
 ENV RUST_VERSION=1.19.0
 
 ## Install base packages
 RUN yum install -y file
 RUN yum install -y wget
 RUN yum install -y epel-release
+RUN yum install -y which
 
 ## Install tools
 RUN yum install -y git
@@ -44,8 +45,10 @@ RUN chmod a+x bin/* && \
 WORKDIR /
 RUN rm -rf elixir
 
-## Copy Erlang files
-COPY volumes/erlang /
+## Install rebar3
+RUN wget https://s3.amazonaws.com/rebar3/rebar3
+RUN mv rebar3 /usr/bin/rebar3
+RUN chmod a+x /usr/bin/rebar3
 
 ## Make mount point
 WORKDIR /src
