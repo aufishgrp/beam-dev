@@ -2,9 +2,9 @@ FROM centos:7
 MAINTAINER Charles Zilm <ch@rleszilm.com>
 
 ## Environment Variables
-ENV ERLANG_VERSION=20.0
-ENV ELIXIR_VERSION=1.5.1
-ENV RUST_VERSION=1.19.0
+ENV ERLANG_VERSION=20.1
+ENV ELIXIR_VERSION=1.5.2
+ENV RUST_VERSION=1.20.0
 
 ## Install base packages
 RUN yum install -y file
@@ -49,6 +49,13 @@ RUN rm -rf elixir
 RUN wget https://s3.amazonaws.com/rebar3/rebar3
 RUN mv rebar3 /usr/bin/rebar3
 RUN chmod a+x /usr/bin/rebar3
+
+## Install elvis
+WORKDIR /opt
+RUN git clone https://github.com/inaka/elvis.git
+WORKDIR /opt/elvis
+RUN rebar3 escriptize
+RUN cp _build/default/bin/elvis /usr/bin
 
 ## Make mount point
 WORKDIR /src
